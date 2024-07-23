@@ -19,6 +19,8 @@ export class MainScene {
 
   textureCube: THREE.CubeTexture;
 
+  clock = new THREE.Clock();
+
   constructor() {
     this.camera.position.set(this.zoom, this.zoom, this.zoom);
     this.scene.add(this.camera);
@@ -42,8 +44,9 @@ export class MainScene {
   }
 
   update() {
+    const deltaTime = this.clock.getDelta();
     if (this.mergedSpheres) {
-      this.rotateSpheres();
+      this.rotateSpheres(deltaTime);
     }
   }
 
@@ -112,8 +115,8 @@ export class MainScene {
     this.scene.add(this.mergedSpheres);
   }
 
-  rotateSpheres() {
-    this.mergedSpheres.rotation.y += 0.005;
+  rotateSpheres(deltaTime: number) {
+    this.mergedSpheres.rotation.y += 0.2 * deltaTime;
   }
 
   addCentralLight() {
