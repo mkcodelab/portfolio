@@ -102,15 +102,24 @@ export class MainScene {
   }
 
   addMergedSpheres() {
-    const material = new THREE.MeshStandardMaterial({
-      color: 0xffffff,
-      transparent: true,
-      opacity: 0.7,
-      metalness: 0.95,
-      roughness: 0.1,
+    // const material = new THREE.MeshStandardMaterial({
+    //   color: 0xffffff,
+    //   transparent: true,
+    //   opacity: 0.7,
+    //   metalness: 0.95,
+    //   roughness: 0.1,
+    //   envMap: this.textureCube,
+    // });
+
+    const material2 = new THREE.MeshPhysicalMaterial({
       envMap: this.textureCube,
+      roughness: 0.15,
+      clearcoat: 1,
+      transmission: 0.95,
+      thickness: 4,
     });
-    this.mergedSpheres = this.generateSpheresGeom(material);
+
+    this.mergedSpheres = this.generateSpheresGeom(material2);
     this.mergedSpheres.position.set(0, -8, 0);
     this.scene.add(this.mergedSpheres);
   }
