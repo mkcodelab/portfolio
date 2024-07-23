@@ -52,21 +52,29 @@ export class MainScene {
     loader.setPath('assets/textures/skybox/');
 
     this.textureCube = loader.load([
-      'space_ft.png',
-      'space_bk.png',
+      //   'space_ft.png',
+      //   'space_bk.png',
 
-      'space_up.png',
-      'space_dn.png',
+      //   'space_up.png',
+      //   'space_dn.png',
 
-      'space_rt.png',
-      'space_lf.png',
+      //   'space_rt.png',
+      //   'space_lf.png',
+      'bkg1_right.png',
+      'bkg1_left.png',
+
+      'bkg1_top.png',
+      'bkg1_bot.png',
+
+      'bkg1_front.png',
+      'bkg1_back.png',
     ]);
 
     this.scene.background = this.textureCube;
   }
 
   addLights() {
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    const ambientLight = new THREE.AmbientLight(0xccccff, 0.8);
     this.scene.add(ambientLight);
     this.addCentralLight();
   }
@@ -93,8 +101,10 @@ export class MainScene {
   addMergedSpheres() {
     const material = new THREE.MeshStandardMaterial({
       color: 0xffffff,
+      transparent: true,
+      opacity: 0.7,
       metalness: 0.95,
-      roughness: 0.2,
+      roughness: 0.1,
       envMap: this.textureCube,
     });
     this.mergedSpheres = this.generateSpheresGeom(material);
