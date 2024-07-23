@@ -6,8 +6,8 @@ import {
   inject,
 } from '@angular/core';
 import * as THREE from 'three';
-// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { MainScene } from '../../3d/main-scene/main-scene';
+import { CameraService } from '../../3d/main-scene/camera.service';
 
 export const ScreenSize = {
   width: window.innerWidth,
@@ -30,7 +30,7 @@ export class EngineService {
 
   private mainScene = inject(MainScene);
 
-  //   private orbitControls: OrbitControls;
+  private cameraSvc = inject(CameraService);
 
   private frameId: number = 0;
 
@@ -61,8 +61,6 @@ export class EngineService {
     this.renderer.setSize(ScreenSize.width, ScreenSize.height);
 
     this.renderer.setClearColor(0x000000);
-
-    // this.initOrbitControls();
   }
 
   public animate(): void {
@@ -87,18 +85,14 @@ export class EngineService {
     });
 
     this.mainScene.update();
+    this.mainScene.lerpCamera(this.cameraSvc.currentCoords);
     this.renderer.render(this.mainScene.scene, this.mainScene.camera);
   }
 
   public resize(): void {
-    console.log('resizing');
     // main scene camera resize (aspect)
     this.mainScene.resize();
     ScreenSize.update();
     this.renderer.setSize(ScreenSize.width, ScreenSize.height);
   }
-
-  //   initOrbitControls() {
-  //     this.orbitControls = new OrbitControls(this.mainScene.camera, this.canvas);
-  //   }
 }

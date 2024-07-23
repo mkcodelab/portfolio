@@ -115,4 +115,9 @@ export class MainScene {
     this.scene.add(new THREE.PointLight(0x55ff88, 5, 20));
     this.scene.add(mesh);
   }
+
+  lerpCamera(coords: THREE.Vector3) {
+    this.camera.position.lerp(coords, 0.02);
+    this.camera.lookAt(0, 0, 0);
+  }
 }
