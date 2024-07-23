@@ -1,0 +1,19 @@
+<div class="mb-5 p-2 navbar-gradient flex justify-between">
+    <div>
+        @for(item of navItems; track item) {
+        <button [routerLink]="item.url"
+                class="text-white p-1 text-orbitron navbar-button text-lg"
+                routerLinkActive="underline"
+                (click)="moveCamera(item.coords)">
+            {{ item.name }}
+        </button>
+        }
+    </div>
+    <div>
+        <!-- create proper toggle -->
+        <button class="text-orbitron text-white"
+                (click)="togglePostProcessing()">
+            postProccess {{ postProcessingOn ? 'on' : 'off' }}
+        </button>
+    </div>
+</div>

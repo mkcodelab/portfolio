@@ -2,11 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-$main-color: #55ff88;
-
 body {
   background-color: #000;
 }
+
+:root {
+  --main-color: #55ff88;
+}
+
 @font-face {
   font-family: "Orbitron";
   src: url("./assets/fonts/Orbitron-Regular.ttf"),
@@ -15,5 +18,5 @@ body {
 
 .text-orbitron {
   font-family: "Orbitron";
-  text-shadow: 2px 2px 5px $main-color, -2px -2px 5px $main-color;
+  text-shadow: 2px 2px 5px var(--main-color), -2px -2px 5px var(--main-color);
 }

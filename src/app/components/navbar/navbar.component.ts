@@ -15,41 +15,26 @@ export interface NavItem {
   selector: 'navbar',
   imports: [RouterLink, RouterLinkActive],
   styles: `
+
     .navbar-gradient {
         background: linear-gradient(to left, transparent, #333)
     }
-  `,
-  template: `
-    <div class="mb-5 p-2 navbar-gradient flex justify-between">
-      <div>
-        @for(item of navItems; track item) {
-        <button
-          [routerLink]="item.url"
-          class="text-white p-1 hover:text-green-400 text-orbitron text-lg"
-          routerLinkActive="underline"
-          (click)="moveCamera(item.coords)"
-        >
-          {{ item.name }}
-        </button>
+    .navbar-button {
+        transition: transform 0.3s ease;
+        &:hover {
+            transform: translateY(-5px) rotateZ(5deg);
+            color: var(--main-color);
         }
-      </div>
-      <div>
-        <!-- create proper toggle -->
-        <button
-          class="text-orbitron text-white"
-          (click)="togglePostProcessing()"
-        >
-          postProccess {{ postProcessingOn ? 'on' : 'off' }}
-        </button>
-      </div>
-    </div>
+    }
   `,
+  templateUrl: './navbar.component.html',
 })
 export class NavbarComponent {
   navItems: NavItem[] = [
+    { name: 'Home', url: 'home', coords: new THREE.Vector3(10, 10, 10) },
     { name: 'About', url: 'about', coords: new THREE.Vector3(10, 20, 1) },
     { name: 'Projects', url: 'projects', coords: new THREE.Vector3(5, 2, -10) },
-    { name: 'Contact', url: 'contact', coords: new THREE.Vector3(10, 10, 10) },
+    { name: 'Contact', url: 'contact', coords: new THREE.Vector3(-10, -10, 1) },
   ];
 
   private cameraSvc = inject(CameraService);
