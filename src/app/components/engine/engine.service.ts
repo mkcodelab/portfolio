@@ -9,6 +9,11 @@ import * as THREE from 'three';
 import { MainScene } from '../../3d/main-scene/main-scene';
 import { CameraService } from '../../3d/main-scene/camera.service';
 
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
+import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass';
+
 export const ScreenSize = {
   width: window.innerWidth,
   height: window.innerHeight,
@@ -36,6 +41,13 @@ export class EngineService {
 
   private ngZone = inject(NgZone);
 
+  private postProcessingOn = true;
+  private composer: EffectComposer;
+
+  private renderPass: RenderPass;
+  private unrealBloomPass: UnrealBloomPass;
+  private outputPass: OutputPass;
+
   //   public ngOnDestroy(): void {
   //     if (this.frameId != null) {
   //       cancelAnimationFrame(this.frameId);
@@ -61,6 +73,27 @@ export class EngineService {
     this.renderer.setSize(ScreenSize.width, ScreenSize.height);
 
     this.renderer.setClearColor(0x000000);
+
+    // post-processing
+
+    this.composer = new EffectComposer(this.renderer);
+
+    this.renderPass = new RenderPass(
+      this.mainScene.scene,
+      this.mainScene.camera
+    );
+
+    this.unrealBloomPass = new UnrealBloomPass(
+      new THREE.Vector2(ScreenSize.width, ScreenSize.height),
+      0.5,
+      1,
+      0.1
+    );
+    this.outputPass = new OutputPass();
+
+    this.composer.addPass(this.renderPass);
+    this.composer.addPass(this.unrealBloomPass);
+    this.composer.addPass(this.outputPass);
   }
 
   public animate(): void {
@@ -86,7 +119,11 @@ export class EngineService {
 
     this.mainScene.update();
     this.mainScene.lerpCamera(this.cameraSvc.currentCoords);
-    this.renderer.render(this.mainScene.scene, this.mainScene.camera);
+    if (this.postProcessingOn) {
+      this.composer.render();
+    } else {
+      this.renderer.render(this.mainScene.scene, this.mainScene.camera);
+    }
   }
 
   public resize(): void {
@@ -94,5 +131,13 @@ export class EngineService {
     this.mainScene.resize();
     ScreenSize.update();
     this.renderer.setSize(ScreenSize.width, ScreenSize.height);
+  }
+
+  public togglePostProcessing() {
+    this.postProcessingOn = !this.postProcessingOn;
+  }
+
+  get postProcessing() {
+    return this.postProcessingOn;
   }
 }
