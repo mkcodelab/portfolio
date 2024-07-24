@@ -40,6 +40,8 @@ export class EngineService {
   private ngZone = inject(NgZone);
 
   private postProcessingOn = false;
+  private renderingOn = true;
+
   private composer: EffectComposer;
 
   private renderPass: RenderPass;
@@ -106,10 +108,12 @@ export class EngineService {
 
     this.mainScene.update();
     this.mainScene.lerpCamera(this.cameraSvc.currentCoords);
-    if (this.postProcessingOn) {
-      this.composer.render();
-    } else {
-      this.renderer.render(this.mainScene.scene, this.mainScene.camera);
+    if (this.renderingOn) {
+      if (this.postProcessingOn) {
+        this.composer.render();
+      } else {
+        this.renderer.render(this.mainScene.scene, this.mainScene.camera);
+      }
     }
   }
 
@@ -120,8 +124,16 @@ export class EngineService {
     this.renderer.setSize(ScreenSize.width, ScreenSize.height);
   }
 
-  public togglePostProcessing() {
-    this.postProcessingOn = !this.postProcessingOn;
+  public togglePostProcessing(to: boolean) {
+    this.postProcessingOn = to;
+  }
+
+  public toggleRendering(to: boolean) {
+    this.renderingOn = to;
+  }
+
+  get rendering() {
+    return this.renderingOn;
   }
 
   get postProcessing() {

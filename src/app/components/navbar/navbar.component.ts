@@ -3,6 +3,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CameraService } from '../../3d/main-scene/camera.service';
 import * as THREE from 'three';
 import { EngineService } from '../engine/engine.service';
+import { ToggleButtonComponent } from '../toggle-button/toggle-button.component';
 
 export interface NavItem {
   name: string;
@@ -13,7 +14,7 @@ export interface NavItem {
 @Component({
   standalone: true,
   selector: 'navbar',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, ToggleButtonComponent],
   styles: `
 
     .navbar-gradient {
@@ -40,17 +41,24 @@ export class NavbarComponent {
   private cameraSvc = inject(CameraService);
   private engineSvc = inject(EngineService);
 
-  get postProcessingOn() {
-    return this.engineSvc.postProcessing;
+  togglePostProcessing(to: boolean) {
+    this.engineSvc.togglePostProcessing(to);
   }
-
-  togglePostProcessing() {
-    this.engineSvc.togglePostProcessing();
+  toggleRendering(to: boolean) {
+    this.engineSvc.toggleRendering(to);
   }
 
   moveCamera(coords?: THREE.Vector3) {
     if (coords) {
       this.cameraSvc.changeCoords(coords);
     }
+  }
+
+  get rendering() {
+    return this.engineSvc.rendering;
+  }
+
+  get postProcessing() {
+    return this.engineSvc.postProcessing;
   }
 }

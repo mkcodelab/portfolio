@@ -9,11 +9,15 @@
         </button>
         }
     </div>
+
     <div>
-        <!-- create proper toggle -->
-        <button class="text-orbitron text-white"
-                (click)="togglePostProcessing()">
-            postProccess {{ postProcessingOn ? 'on' : 'off' }}
-        </button>
+        <toggle-button class="block mb-1"
+                       (toggleEvent)="toggleRendering($event)"
+                       [initialState]="rendering"
+                       description="Toggle Rendering"></toggle-button>
+
+        <toggle-button (toggleEvent)="togglePostProcessing($event)"
+                       [initialState]="postProcessing"
+                       description="Toggle post-processing"></toggle-button>
     </div>
 </div>

@@ -1,0 +1,21 @@
+$toggle-track-width: 50px;
+
+.toggle-thumb {
+  width: calc($toggle-track-width / 2);
+  height: 15px;
+  transition: transform 0.1s ease-in-out;
+}
+.toggle-track {
+  width: $toggle-track-width;
+  border: 2px solid var(--main-color);
+}
+
+.toggle-on {
+  background: white;
+  box-shadow: 0 0 5px 5px var(--main-color);
+  transform: translateX(100%);
+}
+
+.toggle-off {
+  background: #333;
+}

@@ -1,0 +1,6 @@
+<div (click)="onToggle()"
+     [title]="description ?? ''"
+     class="cursor-pointer bg-neutral-400 rounded-full toggle-track border">
+    <div class="toggle-thumb rounded-full"
+         [ngClass]="state ? 'toggle-on' : 'toggle-off'"></div>
+</div>
