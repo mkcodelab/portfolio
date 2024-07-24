@@ -8,6 +8,27 @@ body {
 
 :root {
   --main-color: #55ff88;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .fade-in {
+    opacity: 0;
+    animation: 5s ease fadeIn;
+    animation-fill-mode: forwards;
+  }
+
+  @for $i from 1 through 10 {
+    .delay-#{$i} {
+      animation-delay: #{$i * 500}ms;
+    }
+  }
 }
 
 @font-face {

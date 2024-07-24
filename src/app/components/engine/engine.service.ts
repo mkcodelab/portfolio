@@ -37,8 +37,6 @@ export class EngineService {
 
   private cameraSvc = inject(CameraService);
 
-  private frameId: number = 0;
-
   private ngZone = inject(NgZone);
 
   private postProcessingOn = false;
@@ -47,17 +45,6 @@ export class EngineService {
   private renderPass: RenderPass;
   private unrealBloomPass: UnrealBloomPass;
   private outputPass: OutputPass;
-
-  //   public ngOnDestroy(): void {
-  //     if (this.frameId != null) {
-  //       cancelAnimationFrame(this.frameId);
-  //     }
-  //     if (this.renderer != null) {
-  //       this.renderer.dispose();
-  //       //   this.renderer = null;
-  //       //   this.canvas = null;
-  //     }
-  //   }
 
   public createScene(canvas: ElementRef<HTMLCanvasElement>): void {
     // The first step is to get the reference of the canvas element from our HTML document
@@ -113,7 +100,7 @@ export class EngineService {
   }
 
   public render(): void {
-    this.frameId = requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
       this.render();
     });
 
@@ -128,8 +115,8 @@ export class EngineService {
 
   public resize(): void {
     // main scene camera resize (aspect)
-    this.mainScene.resize();
     ScreenSize.update();
+    this.mainScene.resize();
     this.renderer.setSize(ScreenSize.width, ScreenSize.height);
   }
 

@@ -38,7 +38,6 @@ export class MainScene {
   }
 
   resize() {
-    console.log('resize from main-scene');
     this.camera.aspect = ScreenSize.aspect;
     this.camera.updateProjectionMatrix();
   }
