@@ -1,8 +1,8 @@
-<div class="mb-5 p-2 navbar-gradient flex justify-between">
-    <div>
+<div class="mb-5 p-2 navbar-gradient flex justify-between fixed w-full">
+    <div class="flex align-center">
         @for(item of navItems; track item) {
         <button [routerLink]="item.url"
-                class="text-white p-1 text-orbitron navbar-button text-lg"
+                class="text-white p-1 text-orbitron navbar-button text-md lg:text-lg"
                 routerLinkActive="underline"
                 (click)="moveCamera(item.coords)">
             {{ item.name }}

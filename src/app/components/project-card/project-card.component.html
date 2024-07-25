@@ -1,0 +1,19 @@
+<a [href]="project.projectUrl">
+    <div class="flex flex-col">
+        <div class="p-4">
+            <div class="bg-neutral-400">
+                <img [src]="project.imageUrl"
+                     alt="image">
+            </div>
+            <div class="mt-4">
+                <p>{{project.name}}</p>
+                <p class="text-sm">{{project.description}}</p>
+            </div>
+
+            <div class="mt-4">
+                <a [href]="project.githubUrl"
+                   class="p-2 bg-neutral-400 text-sm rounded-xl neon-button">Check on Github</a>
+            </div>
+        </div>
+    </div>
+</a>

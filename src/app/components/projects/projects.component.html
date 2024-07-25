@@ -1,4 +1,10 @@
 <wrapper>
     <p class="text-center">Some of my projects:</p>
-
+    <div class="flex flex-col ">
+        @for(project of projects; track project) {
+        <div class="m-2 bg-neutral-600/50 rounded-xl">
+            <project-card [project]="project"></project-card>
+        </div>
+        }
+    </div>
 </wrapper>
