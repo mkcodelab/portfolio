@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { WrapperComponent } from '../wrapper/wrapper.component';
 import { ProjectCardComponent } from '../project-card/project-card.component';
+import { NgClass } from '@angular/common';
 
 export interface Project {
   projectUrl: string;
@@ -14,7 +15,7 @@ export interface Project {
   standalone: true,
   selector: 'projects',
   templateUrl: './projects.component.html',
-  imports: [WrapperComponent, ProjectCardComponent],
+  imports: [WrapperComponent, ProjectCardComponent, NgClass],
 })
 export class ProjectsComponent {
   projects: Project[] = [
@@ -24,7 +25,7 @@ export class ProjectsComponent {
       name: 'Soundlab',
       description:
         'Angular / Tone.js sound creation application, with Synthesizer and Sequencer.',
-      imageUrl: '#',
+      imageUrl: '/assets/project-images/soundlabScreenShot.png',
     },
     {
       projectUrl: '#',

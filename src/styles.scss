@@ -21,7 +21,7 @@ body {
 
   .fade-in {
     opacity: 0;
-    animation: 5s ease fadeIn;
+    animation: 3s ease fadeIn;
     animation-fill-mode: forwards;
   }
 
@@ -30,6 +30,10 @@ body {
       animation-delay: #{$i * 500}ms;
     }
   }
+
+  //   .blur {
+  //     backdrop-filter: blur(2px);
+  //   }
 }
 
 @font-face {
