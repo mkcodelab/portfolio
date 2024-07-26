@@ -1,10 +1,4 @@
-import {
-  ElementRef,
-  Injectable,
-  NgZone,
-  OnDestroy,
-  inject,
-} from '@angular/core';
+import { ElementRef, Injectable, NgZone, inject } from '@angular/core';
 import * as THREE from 'three';
 import { MainScene } from '../../3d/main-scene/main-scene';
 import { CameraService } from '../../3d/main-scene/camera.service';
@@ -12,7 +6,6 @@ import { CameraService } from '../../3d/main-scene/camera.service';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
-import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass';
 
 export const ScreenSize = {
   width: window.innerWidth,
@@ -46,10 +39,8 @@ export class EngineService {
 
   private renderPass: RenderPass;
   private unrealBloomPass: UnrealBloomPass;
-  private outputPass: OutputPass;
 
   public createScene(canvas: ElementRef<HTMLCanvasElement>): void {
-    // The first step is to get the reference of the canvas element from our HTML document
     this.canvas = canvas.nativeElement;
 
     this.renderer = new THREE.WebGLRenderer({
@@ -57,32 +48,15 @@ export class EngineService {
       alpha: true,
       antialias: true,
     });
-    this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = THREE.PCFShadowMap;
+
+    this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    this.renderer.toneMappingExposure = 2;
     this.renderer.setSize(ScreenSize.width, ScreenSize.height);
 
     this.renderer.setClearColor(0x000000);
 
     // post-processing
-
-    this.composer = new EffectComposer(this.renderer);
-
-    this.renderPass = new RenderPass(
-      this.mainScene.scene,
-      this.mainScene.camera
-    );
-
-    this.unrealBloomPass = new UnrealBloomPass(
-      new THREE.Vector2(ScreenSize.width, ScreenSize.height),
-      0.5,
-      1,
-      0.1
-    );
-    this.outputPass = new OutputPass();
-
-    this.composer.addPass(this.renderPass);
-    this.composer.addPass(this.unrealBloomPass);
-    this.composer.addPass(this.outputPass);
+    this.initPostprocessing();
   }
 
   public animate(): void {
@@ -108,6 +82,7 @@ export class EngineService {
 
     this.mainScene.update();
     this.mainScene.lerpCamera(this.cameraSvc.currentCoords);
+
     if (this.renderingOn) {
       if (this.postProcessingOn) {
         this.composer.render();
@@ -115,6 +90,25 @@ export class EngineService {
         this.renderer.render(this.mainScene.scene, this.mainScene.camera);
       }
     }
+  }
+
+  private initPostprocessing() {
+    this.composer = new EffectComposer(this.renderer);
+
+    this.renderPass = new RenderPass(
+      this.mainScene.scene,
+      this.mainScene.camera
+    );
+
+    this.unrealBloomPass = new UnrealBloomPass(
+      new THREE.Vector2(ScreenSize.width, ScreenSize.height),
+      3,
+      1,
+      0.1
+    );
+
+    this.composer.addPass(this.renderPass);
+    this.composer.addPass(this.unrealBloomPass);
   }
 
   public resize(): void {
