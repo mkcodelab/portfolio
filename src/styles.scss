@@ -31,6 +31,10 @@ body {
     }
   }
 
+  .neon-border {
+    border: 2px solid var(--main-color);
+  }
+
   //   .blur {
   //     backdrop-filter: blur(2px);
   //   }

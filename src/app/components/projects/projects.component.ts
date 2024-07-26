@@ -16,6 +16,14 @@ export interface Project {
   selector: 'projects',
   templateUrl: './projects.component.html',
   imports: [WrapperComponent, ProjectCardComponent, NgClass],
+  styles: `
+    .backdrop-noise {
+        background-image: url('/assets/svg-filter.svg');
+        background-position: center;
+        background-size: cover;
+        backdrop-filter: blur(4px);
+    }
+  `,
 })
 export class ProjectsComponent {
   projects: Project[] = [

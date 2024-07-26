@@ -3,7 +3,9 @@
     <!-- flex flex-col -->
     <div class="grid grid-cols-1 lg:grid-cols-2">
         @for(project of projects; track project) {
-        <div class="m-2 bg-neutral-600/50 rounded-xl fade-in backdrop-blur-sm"
+
+        <!-- bg-neutral-600/50 rounded-xl backdrop-blur-sm -->
+        <div class="m-2  fade-in rounded-xl backdrop-noise"
              [ngClass]="['delay-' + ($index+1)]">
             <project-card [project]="project"></project-card>
         </div>
