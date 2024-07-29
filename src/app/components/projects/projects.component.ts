@@ -36,12 +36,12 @@ export class ProjectsComponent {
       imageUrl: '/assets/project-images/soundlabScreenShot.png',
     },
     {
-      projectUrl: '#',
+      projectUrl: 'https://mkcodelab.github.io/BinauralBeats2/',
       githubUrl: 'https://github.com/mkcodelab/BinauralBeats2',
       name: 'Binaural Beats',
       description:
         'Binaural Beats app, where you can use different frequencies to manipulate your mood',
-      imageUrl: '#',
+      imageUrl: '/assets/project-images/binauralScreenShot.png',
     },
   ];
 }
