@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { ScreenSize } from '../../components/engine/engine.service';
-import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils';
+import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
 import { Injectable } from '@angular/core';
 
