@@ -32,8 +32,8 @@ export class EngineService {
 
   private ngZone = inject(NgZone);
 
-  private postProcessingOn = false;
-  private renderingOn = false;
+  private postProcessingOn = true;
+  private renderingOn = true;
 
   private composer: EffectComposer;
 
