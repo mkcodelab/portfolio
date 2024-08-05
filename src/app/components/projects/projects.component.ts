@@ -33,7 +33,7 @@ export class ProjectsComponent {
       name: 'Soundlab',
       description:
         'Angular / Tone.js sound creation application, with Synthesizer and Sequencer.',
-      imageUrl: '/assets/project-images/soundlabScreenShot.png',
+      imageUrl: 'assets/project-images/soundlabScreenShot.png',
     },
     {
       projectUrl: 'https://mkcodelab.github.io/BinauralBeats2/',
@@ -41,7 +41,7 @@ export class ProjectsComponent {
       name: 'Binaural Beats',
       description:
         'Binaural Beats app, where you can use different frequencies to manipulate your mood',
-      imageUrl: '/assets/project-images/binauralScreenShot.png',
+      imageUrl: 'assets/project-images/binauralScreenShot.png',
     },
   ];
 }
