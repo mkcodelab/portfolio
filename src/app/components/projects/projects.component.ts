@@ -18,7 +18,7 @@ export interface Project {
   imports: [WrapperComponent, ProjectCardComponent, NgClass],
   styles: `
     .backdrop-noise {
-        background-image: url('/assets/svg-filter.svg');
+        background-image: url('/assets/svg_filter.svg');
         background-position: center;
         background-size: cover;
         backdrop-filter: blur(4px);
@@ -33,7 +33,7 @@ export class ProjectsComponent {
       name: 'Soundlab',
       description:
         'Angular / Tone.js sound creation application, with Synthesizer and Sequencer.',
-      imageUrl: 'assets/project-images/soundlabScreenShot.png',
+      imageUrl: 'assets/project_images/soundlabScreenShot.png',
     },
     {
       projectUrl: 'https://mkcodelab.github.io/BinauralBeats2/',
@@ -41,7 +41,7 @@ export class ProjectsComponent {
       name: 'Binaural Beats',
       description:
         'Binaural Beats app, where you can use different frequencies to manipulate your mood',
-      imageUrl: 'assets/project-images/binauralScreenShot.png',
+      imageUrl: 'assets/project_images/binauralScreenShot.png',
     },
   ];
 }
