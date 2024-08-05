@@ -6,6 +6,7 @@ import { CameraService } from '../../3d/main-scene/camera.service';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
+import { CheckDeviceService } from '../../services/checkDevice.service';
 
 export const ScreenSize = {
   width: window.innerWidth,
@@ -32,7 +33,9 @@ export class EngineService {
 
   private ngZone = inject(NgZone);
 
-  private postProcessingOn = true;
+  private deviceSvc = inject(CheckDeviceService);
+  // checks if it's not mobile (performance issues)
+  private postProcessingOn = this.isBloomEnabled();
   private renderingOn = true;
 
   private composer: EffectComposer;
@@ -132,5 +135,9 @@ export class EngineService {
 
   get postProcessing() {
     return this.postProcessingOn;
+  }
+
+  private isBloomEnabled() {
+    return this.deviceSvc.isDesktop();
   }
 }
