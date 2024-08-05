@@ -46,6 +46,13 @@ body {
     url("./assets/fonts/Orbitron-Bold.ttf");
 }
 
+.backdrop-noise {
+  background-image: url("./assets/svg_filter.svg");
+  background-position: center;
+  background-size: cover;
+  backdrop-filter: blur(4px);
+}
+
 .text-orbitron {
   font-family: "Orbitron";
   text-shadow: 2px 2px 5px var(--main-color), -2px -2px 5px var(--main-color);
