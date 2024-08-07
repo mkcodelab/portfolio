@@ -32,7 +32,7 @@ export class MainScene {
 
     this.createSkybox();
 
-    this.addMergedSpheres();
+    // this.addMergedSpheres();
 
     this.addLights();
   }
@@ -53,26 +53,32 @@ export class MainScene {
     const loader = new THREE.CubeTextureLoader();
     loader.setPath('assets/textures/skybox/');
 
-    this.textureCube = loader.load([
-      //   'space_ft.png',
-      //   'space_bk.png',
+    this.textureCube = loader.load(
+      [
+        //   'space_ft.png',
+        //   'space_bk.png',
 
-      //   'space_up.png',
-      //   'space_dn.png',
+        //   'space_up.png',
+        //   'space_dn.png',
 
-      //   'space_rt.png',
-      //   'space_lf.png',
-      'bkg1_right.png',
-      'bkg1_left.png',
+        //   'space_rt.png',
+        //   'space_lf.png',
+        'bkg1_right_512.png',
+        'bkg1_left_512.png',
 
-      'bkg1_top.png',
-      'bkg1_bot.png',
+        'bkg1_top_512.png',
+        'bkg1_bot_512.png',
 
-      'bkg1_front.png',
-      'bkg1_back.png',
-    ]);
+        'bkg1_front_512.png',
+        'bkg1_back_512.png',
+      ],
+      () => {
+        this.scene.background = this.textureCube;
+        this.addMergedSpheres();
+      }
+    );
 
-    this.scene.background = this.textureCube;
+    // this.scene.background = this.textureCube;
   }
 
   addLights() {
