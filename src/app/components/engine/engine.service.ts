@@ -3,10 +3,10 @@ import * as THREE from 'three';
 import { MainScene } from '../../3d/main-scene/main-scene';
 import { CameraService } from '../../3d/main-scene/camera.service';
 
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
-import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
-import { CheckDeviceService } from '../../services/checkDevice.service';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
+import { CheckDeviceService } from '../../services/checkDevice.service.js';
 
 export const ScreenSize = {
   width: window.innerWidth,
