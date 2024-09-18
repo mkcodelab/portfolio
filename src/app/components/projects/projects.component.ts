@@ -20,6 +20,14 @@ export interface Project {
 export class ProjectsComponent {
   projects: Project[] = [
     {
+      projectUrl: 'https://mkcodelab.github.io/PaintItBlack/',
+      githubUrl: 'https://github.com/mkcodelab/PaintItBlack',
+      name: 'PaintItBlack',
+      description:
+        'Experimental Canvas Painting Editor, Angular / pure HTML Canvas API',
+      imageUrl: 'assets/project_images/PaintItBlackScreenShot.png',
+    },
+    {
       projectUrl: 'https://mkcodelab.github.io/soundlab/',
       githubUrl: 'https://github.com/mkcodelab/soundlab',
       name: 'Soundlab',
