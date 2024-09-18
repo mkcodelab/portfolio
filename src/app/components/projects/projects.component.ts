@@ -33,7 +33,7 @@ export class ProjectsComponent {
       name: 'PaintItBlack',
       description:
         'Experimental Canvas Painting Editor, Angular / pure HTML Canvas API',
-      imageUrl: 'assets/project-images/PaintItBlackScreenShot.png',
+      imageUrl: 'assets/project_images/PaintItBlackScreenShot.png',
     },
     {
       projectUrl: 'https://mkcodelab.github.io/soundlab/',
@@ -41,7 +41,7 @@ export class ProjectsComponent {
       name: 'Soundlab',
       description:
         'Angular / Tone.js sound creation application, with Synthesizer and Sequencer.',
-      imageUrl: 'assets/project-images/soundlabScreenShot.png',
+      imageUrl: 'assets/project_images/soundlabScreenShot.png',
     },
     {
       projectUrl: 'https://mkcodelab.github.io/BinauralBeats2/',
@@ -49,7 +49,7 @@ export class ProjectsComponent {
       name: 'Binaural Beats',
       description:
         'Binaural Beats app, where you can use different frequencies to manipulate your mood',
-      imageUrl: 'assets/project-images/binauralScreenShot.png',
+      imageUrl: 'assets/project_images/binauralScreenShot.png',
     },
   ];
 }
